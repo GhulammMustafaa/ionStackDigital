@@ -47,7 +47,7 @@ export default function Navbar() {
               boxShadow: '0 0 16px rgba(0, 213, 255, 0)',
             }}>
               <img 
-    src="icon.jpeg" 
+    src="/icon.jpeg" 
     alt="Logo" 
     style={{ 
       width: '100%', 

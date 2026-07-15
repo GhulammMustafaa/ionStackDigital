@@ -457,7 +457,7 @@ export default function Home() {
                   boxShadow: '0 0 60px rgba(71, 71, 71, 0.1)',
                 }}>
                   <img
-                    src="Logo.png"
+                    src="/Logo.png"
                     alt="Modern tech workspace"
                     style={{ width: '100%', display: 'block', filter: 'brightness(0.7) saturate(1.2)' }}
                   />

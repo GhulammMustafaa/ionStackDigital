@@ -50,6 +50,7 @@ export default function Footer() {
 
   return (
     <footer
+      className="site-footer"
       style={{
         background: 'var(--bg-secondary)',
         borderTop: '1px solid var(--border-subtle)',
@@ -57,54 +58,105 @@ export default function Footer() {
         paddingBottom: 0,
       }}
     >
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
+      {/* ── Responsive rules ── */}
+      <style>{`
+        .footer-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0 40px;
+        }
 
-        {/* ── Top grid: Quick Links | Socials | Contact card ── */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '280px 1fr 1fr 1.15fr',
-            gap: 48,
-            alignItems: 'start',
-            marginBottom: 64,
-          }}
-        >
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 280px 1fr 1fr 1.15fr;
+          gap: 48px;
+          align-items: start;
+          margin-bottom: 64px;
+        }
+
+        .footer-logo-col {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-top: 12px;
+        }
+
+        .footer-bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+          padding: 20px 0;
+        }
+
+        /* ── Tablet ── */
+        @media (max-width: 1024px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            row-gap: 48px;
+          }
+          .footer-logo-col {
+            grid-column: 1 / -1;
+            flex-direction: row;
+            align-items: center;
+            padding-top: 0;
+          }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          .site-footer {
+            padding-top: 56px;
+          }
+          .footer-inner {
+            padding: 0 20px;
+          }
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+          }
+          .footer-logo-col {
+            justify-content: center;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 20px 0 24px;
+          }
+          .footer-bottom p,
+          .footer-bottom a {
+            font-size: 11px !important;
+          }
+        }
+      `}</style>
+
+      <div className="footer-inner">
+
+        {/* ── Top grid: Logo | Quick Links | Socials | Contact card ── */}
+        <div className="footer-grid">
+
           {/* ── Column 1: Logo ── */}
-<div
-  style={{
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    paddingTop: 12,
-  }}
->
-  <Link to="/">
-    <img
-      src={"icfooter.png"}
-      alt="IonStack"
-      style={{
-        width: 200,
-        height: 'auto',
-        objectFit: 'contain',
-        display: 'block',
-      }}
-    />
-  </Link>
+          <div className="footer-logo-col">
+            <Link to="/">
+              <img
+                src="/icfooter.png"
+                alt="IonStack"
+                style={{
+                  width: 200,
+                  maxWidth: '60vw',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </Link>
+          </div>
 
-  {/* <p
-    style={{
-      marginTop: 18,
-      maxWidth: 220,
-      color: 'var(--text-secondary)',
-      fontSize: 14,
-      lineHeight: 1.7,
-    }}
-  >
-    Let's get started!
-  </p> */}
-</div>
-
-          {/* ── Column 1: Quick Links ── */}
+          {/* ── Column 2: Quick Links ── */}
           <div>
             <h4
               style={{
@@ -119,7 +171,7 @@ export default function Footer() {
             >
               Quick Links
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 16, padding: 0, margin: 0 }}>
               {quickLinks.map(item => (
                 <li key={item.label}>
                   <Link
@@ -151,7 +203,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ── Column 2: Socials ── */}
+          {/* ── Column 3: Socials ── */}
           <div>
             <h4
               style={{
@@ -166,7 +218,7 @@ export default function Footer() {
             >
               Socials
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 20, padding: 0, margin: 0 }}>
               {socials.map(({ label, Icon, href }) => (
                 <li key={label}>
                   <a
@@ -195,7 +247,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ── Column 3: Contact Card ── */}
+          {/* ── Column 4: Contact Card ── */}
           <div>
             <div
               style={{
@@ -257,6 +309,7 @@ export default function Footer() {
                     textDecoration: 'none',
                     fontSize: 13,
                     transition: 'color 0.25s ease',
+                    wordBreak: 'break-word',
                   }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLAnchorElement).style.color = '#1592ab';
@@ -285,7 +338,7 @@ export default function Footer() {
 
                 {/* Phone */}
                 <a
-                  href="tel:+92 316-1384516"
+                  href="tel:+923161384516"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -345,7 +398,7 @@ export default function Footer() {
                   >
                     <MapPin size={15} color="#1592ab" />
                   </span>
-                  Karachi,Pakistan
+                  Karachi, Pakistan
                 </div>
               </div>
             </div>
@@ -356,16 +409,7 @@ export default function Footer() {
         <div style={{ height: 1, background: 'var(--border-subtle)' }} />
 
         {/* ── Bottom bar ── */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 16,
-            padding: '20px 0',
-          }}
-        >
+        <div className="footer-bottom">
           <p
             style={{
               color: 'var(--text-secondary)',
@@ -374,6 +418,7 @@ export default function Footer() {
               display: 'flex',
               alignItems: 'center',
               gap: 7,
+              margin: 0,
             }}
           >
             <span style={{ color: '#1592ab', fontSize: 15, lineHeight: 1 }}>©</span>
@@ -381,7 +426,7 @@ export default function Footer() {
           </p>
 
           <a
-            href="Mailto:ionStackDigital@gmail.com"
+            href="mailto:ionStackDigital@gmail.com"
             style={{
               display: 'flex',
               alignItems: 'center',
